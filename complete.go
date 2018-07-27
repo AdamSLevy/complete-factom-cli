@@ -463,21 +463,69 @@ func main() {
 			"-walletpassword":  complete.PredictAnything,
 			"-wallettls":       complete.PredictNothing,
 			"-walletuser":      complete.PredictAnything,
+
+			"-test.bench":                complete.PredictAnything,
+			"-test.benchmem":             complete.PredictNothing,
+			"-test.benchtime":            complete.PredictAnything,
+			"-test.blockprofile":         complete.PredictFiles("*"),
+			"-test.blockprofilerate":     complete.PredictAnything,
+			"-test.count":                complete.PredictAnything,
+			"-test.coverprofile":         complete.PredictFiles("*"),
+			"-test.cpu":                  complete.PredictAnything,
+			"-test.cpuprofile":           complete.PredictFiles("*"),
+			"-test.failfast":             complete.PredictNothing,
+			"-test.list":                 complete.PredictAnything,
+			"-test.memprofile":           complete.PredictFiles("*"),
+			"-test.memprofilerate":       complete.PredictAnything,
+			"-test.mutexprofile":         complete.PredictAnything,
+			"-test.mutexprofilefraction": complete.PredictAnything,
+			"-test.outputdir":            complete.PredictDirs("*"),
+			"-test.parallel":             complete.PredictAnything,
+			"-test.run":                  complete.PredictAnything,
+			"-test.short":                complete.PredictNothing,
+			"-test.testlogfile":          complete.PredictFiles("*"),
+			"-test.timeout":              complete.PredictAnything,
+			"-test.trace":                complete.PredictFiles("*"),
+			"-test.v":                    complete.PredictNothing,
 		},
 	}
 	complete.New("factom-cli", cli).Run()
 }
 
-// -factomdcert
-// -factomdpassword
+// -factomdcert string
+// -factomdpassword string
 // -factomdtls
-// -factomduser
-// -s
-// -w
-// -walletcert
-// -walletpassword
+// -factomduser string
+// -s string
+// -test.bench regexp
+// -test.benchmem
+// -test.benchtime d
+// -test.blockprofile file
+// -test.blockprofilerate rate
+// -test.count n
+// -test.coverprofile file
+// -test.cpu list
+// -test.cpuprofile file
+// -test.failfast
+// -test.list regexp
+// -test.memprofile file
+// -test.memprofilerate rate
+// -test.mutexprofile string
+// -test.mutexprofilefraction int
+// -test.outputdir dir
+// -test.parallel n
+// -test.run regexp
+// -test.short
+// -test.testlogfile file
+// -test.timeout d
+// -test.trace file
+// -test.v
+// -w string
+// -walletcert string
+// -walletpassword string
 // -wallettls
-// -walletuser
+// -walletuser string
+
 // addchain [-fq] [-n NAME1 -n NAME2 -h HEXNAME3 ] [-CET] ECADDRESS <STDIN>
 // addentry [-fq] [-n NAME1 -h HEXNAME2 ...|-c CHAINID] [-e EXTID1 -e EXTID2 -x HEXEXTID ...] [-CET] ECADDRESS <STDIN>
 // addtxecoutput [-rq] TXNAME ADDRESS AMOUNT
