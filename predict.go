@@ -4,6 +4,7 @@ import (
 	"flag"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/AdamSLevy/factom"
 	"github.com/posener/complete"
@@ -192,4 +193,5 @@ func parseWalletFlags() {
 	flags.StringVar(&factom.RpcConfig.WalletRPCPassword, "walletpassword", "", "")
 	flags.BoolVar(&factom.RpcConfig.WalletTLSEnable, "wallettls", false, "")
 	flags.Parse(strings.Fields(os.Getenv("COMP_LINE"))[1:])
+	factom.SetWalletTimeout(1 * time.Second)
 }
