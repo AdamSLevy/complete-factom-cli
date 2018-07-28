@@ -1,6 +1,8 @@
 package main
 
-import "github.com/posener/complete"
+import (
+	"github.com/posener/complete"
+)
 
 func main() {
 	// addchain [-fq] [-n NAME1 -n NAME2 -h HEXNAME3 ] [-CET] ECADDRESS <STDIN>
@@ -16,7 +18,7 @@ func main() {
 			"-E": complete.PredictNothing,
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleECAddress([]string{"-n", "-h"}),
 	}
 	// addentry [-fq] [-n NAME1 -h HEXNAME2 ...|-c CHAINID] [-e EXTID1 -e EXTID2 -x HEXEXTID ...] [-CET] ECADDRESS <STDIN>
 	addentry := complete.Command{
@@ -35,29 +37,30 @@ func main() {
 			"-E": complete.PredictNothing,
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleECAddress([]string{"-n", "-h", "-c", "-e", "-x"}),
 	}
+
 	// addtxecoutput [-rq] TXNAME ADDRESS AMOUNT
 	addtxecoutput := complete.Command{
 		Flags: complete.Flags{
 			"-r": complete.PredictNothing,
 			"-q": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictTxNameECAddress,
 	}
 	// addtxfee [-q] TXNAME ADDRESS
 	addtxfee := complete.Command{
 		Flags: complete.Flags{
 			"-q": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictTxNameFCTAddress,
 	}
 	// addtxinput [-q] TXNAME ADDRESS AMOUNT
 	addtxinput := complete.Command{
 		Flags: complete.Flags{
 			"-q": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictTxNameFCTAddress,
 	}
 	// addtxoutput [-rq] TXNAME ADDRESS AMOUNT
 	addtxoutput := complete.Command{
@@ -65,7 +68,7 @@ func main() {
 			"-r": complete.PredictNothing,
 			"-q": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictTxNameFCTAddress,
 	}
 	// backupwallet
 	backupwallet := complete.Command{
@@ -76,7 +79,7 @@ func main() {
 		Flags: complete.Flags{
 			"-r": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleAddress,
 	}
 	// buyec [-fqrT] FCTADDRESS ECADDRESS ECAMOUNT
 	buyec := complete.Command{
@@ -86,7 +89,7 @@ func main() {
 			"-q": complete.PredictNothing,
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictFCTAddressECAddress,
 	}
 	// composechain [-f] [-n NAME1 -n NAME2 -h HEXNAME3 ] ECADDRESS <STDIN>
 	composechain := complete.Command{
@@ -96,7 +99,7 @@ func main() {
 			"-n": complete.PredictAnything,
 			"-h": complete.PredictAnything,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleECAddress([]string{"-n", "-h"}),
 	}
 	// composeentry [-f] [-n NAME1 -h HEXNAME2 ...|-c CHAINID]  [-e EXTID1 -e EXTID2 -x HEXEXTID ...] ECADDRESS <STDIN>
 	composeentry := complete.Command{
@@ -110,11 +113,11 @@ func main() {
 			"-e": complete.PredictAnything,
 			"-x": complete.PredictAnything,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleECAddress([]string{"-n", "-h", "-c", "-e", "-x"}),
 	}
 	// composetx TXNAME
 	composetx := complete.Command{
-		Args: complete.PredictAnything,
+		Args: predictSingleTxName,
 	}
 	// ecrate
 	ecrate := complete.Command{
@@ -301,7 +304,7 @@ func main() {
 		Flags: complete.Flags{
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleAddress,
 	}
 	// listtxs [all] [-T]
 	listtxs_all := complete.Command{
@@ -316,7 +319,7 @@ func main() {
 	}
 	// listtxs name TXNAME
 	listtxs_name := complete.Command{
-		Args: complete.PredictAnything,
+		Args: predictSingleTxName,
 	}
 	// listtxs range [-T] START END
 	listtxs_range := complete.Command{
@@ -371,11 +374,11 @@ func main() {
 	}
 	// rmaddress ADDRESS
 	rmaddress := complete.Command{
-		Args: complete.PredictAnything,
+		Args: predictSingleAddress,
 	}
 	// rmtx TXNAME
 	rmtx := complete.Command{
-		Args: complete.PredictAnything,
+		Args: predictSingleTxName,
 	}
 	// sendfct [-fqrT] FROMADDRESS TOADDRESS AMOUNT
 	sendfct := complete.Command{
@@ -385,7 +388,7 @@ func main() {
 			"-r": complete.PredictNothing,
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictFCTAddressFCTAddress,
 	}
 	// sendtx [-fqT] TXNAME
 	sendtx := complete.Command{
@@ -394,7 +397,7 @@ func main() {
 			"-q": complete.PredictNothing,
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleTxName,
 	}
 	// signtx [-fqT] TXNAME
 	signtx := complete.Command{
@@ -403,7 +406,7 @@ func main() {
 			"-q": complete.PredictNothing,
 			"-T": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictSingleTxName,
 	}
 	// status TxID|FullTx
 	status := complete.Command{
@@ -414,7 +417,7 @@ func main() {
 		Flags: complete.Flags{
 			"-q": complete.PredictNothing,
 		},
-		Args: complete.PredictAnything,
+		Args: predictTxNameFCTAddress,
 	}
 
 	cli := complete.Command{
