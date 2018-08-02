@@ -14,6 +14,7 @@ implement the completion.
 ## Installation
 ```
 go get -u github.com/AdamSLevy/complete-factom-cli
+go install github.com/AdamSLevy/complete-factom-cli
 complete-factom-cli -install -y
 source ~/.bashrc
 ```
@@ -21,5 +22,6 @@ source ~/.bashrc
 ## Updating
 ```
 go get -u github.com/AdamSLevy/complete-factom-cli
+go install github.com/AdamSLevy/complete-factom-cli
 ```
 You do not need to rerun the `-install` or `source` commands.
