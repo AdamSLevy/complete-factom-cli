@@ -101,7 +101,7 @@ var predictFCTAddressFCTAddress = complete.PredictFunc(func(a complete.Args) []s
 	case 0:
 		fallthrough
 	case 1:
-		return listECAddresses()
+		return listFCTAddresses()
 	}
 	return nil
 })
