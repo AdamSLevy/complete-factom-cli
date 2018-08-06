@@ -476,29 +476,6 @@ func main() {
 // -factomdtls
 // -factomduser string
 // -s string
-// -test.bench regexp
-// -test.benchmem
-// -test.benchtime d
-// -test.blockprofile file
-// -test.blockprofilerate rate
-// -test.count n
-// -test.coverprofile file
-// -test.cpu list
-// -test.cpuprofile file
-// -test.failfast
-// -test.list regexp
-// -test.memprofile file
-// -test.memprofilerate rate
-// -test.mutexprofile string
-// -test.mutexprofilefraction int
-// -test.outputdir dir
-// -test.parallel n
-// -test.run regexp
-// -test.short
-// -test.testlogfile file
-// -test.timeout d
-// -test.trace file
-// -test.v
 // -w string
 // -walletcert string
 // -walletpassword string
