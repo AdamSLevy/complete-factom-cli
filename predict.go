@@ -186,12 +186,69 @@ func parseWalletFlags() {
 	}
 	// Parse any previously specified factom-cli options required for
 	// connecting to factom-walletd
+	var (
+		walletRpcUser = flag.String(
+			"walletuser",
+			"",
+			"Username for API connections to factom-walletd",
+		)
+		walletRpcPassword = flag.String(
+			"walletpassword",
+			"",
+			"Password for API connections to factom-walletd",
+		)
+		factomdRpcUser = flag.String(
+			"factomduser",
+			"",
+			"Username for API connections to factomd",
+		)
+		factomdRpcPassword = flag.String(
+			"factomdpassword",
+			"",
+			"Password for API connections to factomd",
+		)
+		factomdLocation = flag.String(
+			"s",
+			"",
+			"IPAddr:port# of factomd API to use to access blockchain (default"+
+				" localhost:8088)",
+		)
+		walletdLocation = flag.String(
+			"w",
+			"",
+			"IPAddr:port# of factom-walletd API to use to create transactions"+
+				" (default localhost:8089)",
+		)
+		walletTLSflag = flag.Bool(
+			"wallettls",
+			false,
+			"Set to true when the wallet API is encrypted",
+		)
+		walletTLSCert = flag.String(
+			"walletcert",
+			"",
+			"This file is the TLS certificate provided by the factom-walletd"+
+				" API. (default ~/.factom/walletAPIpub.cert)",
+		)
+		factomdTLSflag = flag.Bool(
+			"factomdtls",
+			false,
+			"Set to true when the factomd API is encrypted",
+		)
+		factomdTLSCert = flag.String(
+			"factomdcert",
+			"",
+			"This file is the TLS certificate provided by the factomd API."+
+				" (default ~/.factom/m2/factomdAPIpub.cert)",
+		)
+	)
 	flags = flag.NewFlagSet("", flag.ContinueOnError)
-	flags.StringVar(&factom.RpcConfig.WalletServer, "w", "localhost:8089", "")
-	flags.StringVar(&factom.RpcConfig.WalletTLSCertFile, "walletcert", "~/.factom/walletAPIpub.cert", "")
-	flags.StringVar(&factom.RpcConfig.WalletRPCUser, "walletuser", "", "")
-	flags.StringVar(&factom.RpcConfig.WalletRPCPassword, "walletpassword", "", "")
-	flags.BoolVar(&factom.RpcConfig.WalletTLSEnable, "wallettls", false, "")
 	flags.Parse(strings.Fields(os.Getenv("COMP_LINE"))[1:])
 	factom.SetWalletTimeout(1 * time.Second)
+	factom.SetFactomdServer(*factomdLocation)
+	factom.SetWalletServer(*walletdLocation)
+	factom.SetFactomdRpcConfig(*factomdRpcUser, *factomdRpcPassword)
+	factom.SetWalletRpcConfig(*walletRpcUser, *walletRpcPassword)
+	factom.SetWalletEncryption(*walletTLSflag, *walletTLSCert)
+	factom.SetFactomdEncryption(*factomdTLSflag, *factomdTLSCert)
 }

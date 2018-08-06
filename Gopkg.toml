@@ -1,0 +1,71 @@
+# Gopkg.toml example
+#
+# Refer to https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md
+# for detailed Gopkg.toml documentation.
+#
+# required = ["github.com/user/thing/cmd/thing"]
+# ignored = ["github.com/user/project/pkgX", "bitbucket.org/user/project/pkgA/pkgY"]
+#
+# [[constraint]]
+#   name = "github.com/user/project"
+#   version = "1.0.0"
+#
+# [[constraint]]
+#   name = "github.com/user/project2"
+#   branch = "dev"
+#   source = "github.com/myfork/project2"
+#
+# [[override]]
+#   name = "github.com/x/y"
+#   version = "2.4.0"
+#
+# [prune]
+#   non-go = false
+#   go-tests = true
+#   unused-packages = true
+
+
+[[constraint]]
+  name = "github.com/AdamSLevy/factom"
+  branch = "master"
+
+## Based on github.com/FactomProject/factom/glide.yaml
+[[override]]
+  name = "github.com/FactomProject/btcutil"
+  branch = "master"
+
+[[override]]
+  name = "github.com/FactomProject/ed25519"
+  branch = "master"
+
+[[override]]
+  name = "github.com/FactomProject/factoid"
+  branch = "master"
+
+[[override]]
+  name = "github.com/FactomProject/go-bip32"
+  branch = "develop"
+
+[[override]]
+  name = "github.com/FactomProject/go-bip39"
+  branch = "develop"
+
+[[override]]
+  name = "github.com/FactomProject/go-bip44"
+  branch = "master"
+
+[[override]]
+  name = "github.com/FactomProject/goleveldb"
+  branch = "master"
+
+[[override]]
+  name = "github.com/FactomProject/netki-go-partner-client"
+  branch = "master"
+
+[[override]]
+  name = "github.com/FactomProject/web"
+  branch = "develop"
+
+[prune]
+  go-tests = true
+  unused-packages = true
