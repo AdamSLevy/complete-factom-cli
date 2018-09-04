@@ -1,0 +1,33 @@
+# github.com/AdamSLevy/factom v0.0.0-20180830194820-f09dea5bd165
+github.com/AdamSLevy/factom
+# github.com/FactomProject/basen v0.0.0-20150613233007-fe3947df716e
+github.com/FactomProject/basen
+# github.com/FactomProject/btcutil v0.0.0-20160826074221-43986820ccd5
+github.com/FactomProject/btcutil/base58
+# github.com/FactomProject/btcutilecc v0.0.0-20130527213604-d3a63a5752ec
+github.com/FactomProject/btcutilecc
+# github.com/FactomProject/ed25519 v0.0.0-20150814230546-38002c4fe7b6
+github.com/FactomProject/ed25519
+github.com/FactomProject/ed25519/edwards25519
+# github.com/FactomProject/go-bip32 v0.0.0-20161206200006-3b593af1c415
+github.com/FactomProject/go-bip32
+# github.com/FactomProject/go-bip39 v0.0.0-20161217174232-d1007fb78d9a
+github.com/FactomProject/go-bip39
+# github.com/FactomProject/go-bip44 v0.0.0-20161206084836-fd672f46ddc3
+github.com/FactomProject/go-bip44
+# github.com/FactomProject/go-simplejson v0.5.0
+github.com/FactomProject/go-simplejson
+# github.com/FactomProject/netki-go-partner-client v0.0.0-20160324224126-426acb535e66
+github.com/FactomProject/netki-go-partner-client
+# github.com/hashicorp/errwrap v0.0.0-20180715044906-d6c0cd880357
+github.com/hashicorp/errwrap
+# github.com/hashicorp/go-multierror v0.0.0-20180717150148-3d5d8f294aa0
+github.com/hashicorp/go-multierror
+# github.com/posener/complete v1.1.2
+github.com/posener/complete
+github.com/posener/complete/cmd
+github.com/posener/complete/match
+github.com/posener/complete/cmd/install
+# golang.org/x/crypto v0.0.0-20180904163835-0709b304e793
+golang.org/x/crypto/ripemd160
+golang.org/x/crypto/pbkdf2
